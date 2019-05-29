@@ -34,8 +34,10 @@ for step, (x,y) in enumerate(db):
         y_onehot = tf.one_hot(y, depth=10)
         # [b, 10]
         loss = tf.square(out-y_onehot)
-        # [b]
+        if step == 0: print("loss.shape: ", loss.shape)  # (32, 10)
+        # []
         loss = tf.reduce_sum(loss) / 32
+        if step == 0: print("loss.shape: ", loss.shape)  # ()
 
 
     acc_meter.update_state(tf.argmax(out, axis=1), y)
