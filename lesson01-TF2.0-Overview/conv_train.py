@@ -110,6 +110,10 @@ def apply_clean():
 
 
 apply_clean()
+try:
+    os.makedirs(MODEL_DIR)
+except:
+    pass
 
 checkpoint_dir = os.path.join(MODEL_DIR, 'checkpoints')
 checkpoint_prefix = os.path.join(checkpoint_dir, 'ckpt')
@@ -134,5 +138,10 @@ for i in range(NUM_TRAIN_EPOCHS):
     print('saved checkpoint.')
 
 export_path = os.path.join(MODEL_DIR, 'export')
+try:
+    os.makedirs(MODEL_DIR)
+except:
+    pass
+
 tf.saved_model.save(model, export_path)
 print('saved SavedModel for exporting.')
